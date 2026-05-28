@@ -1,0 +1,21 @@
+● Building all 14 files now. Starting in parallel batches.
+
+● Write(demo\app\package.json)
+  ⎿  Wrote 40 lines to demo\app\package.json
+       2   "name": "express-rate-limit-demo",
+       3   "version": "1.0.0",
+       4   "description": "ECC demo: rate limiting an Express API — showc
+         asing skills, agents, and hooks",
+       5   "main": "dist/index.js",
+       6   "scripts": {
+       7     "build": "tsc",
+       8     "start": "node dist/index.js",
+       9     "dev": "ts-node src/index.ts",
+      10     "test": "jest --coverage",
+     … +31 lines (ctrl+o to expand)
+
+● Write(demo\app\tsconfig.json)
+  ⎿ 
+
+
+
