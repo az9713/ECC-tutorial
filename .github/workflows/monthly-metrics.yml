@@ -16,6 +16,15 @@ jobs:
     steps:
       - name: Update monthly metrics issue
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          # The default GITHUB_TOKEN can never read /traffic/views or /traffic/clones
+          # (GitHub returns 403 "Resource not accessible by integration" regardless of
+          # the permissions granted above) — those endpoints require a token tied to a
+          # real account with push access. Set this repo secret to a personal access
+          # token (classic "repo" scope, or fine-grained with Contents:Read +
+          # Administration:Read on this repo) from an account with push access to
+          # unlock real numbers; until then this degrades to "n/a" exactly as before.
+          TRAFFIC_STATS_TOKEN: ${{ secrets.TRAFFIC_STATS_TOKEN }}
         with:
           script: |
             const owner = context.repo.owner;
@@ -78,11 +87,17 @@ jobs:
             }
 
             async function getTraffic(metric) {
+              const patToken = process.env.TRAFFIC_STATS_TOKEN;
+              if (!patToken) return null;
               try {
                 const route = metric === "clones"
                   ? "GET /repos/{owner}/{repo}/traffic/clones"
                   : "GET /repos/{owner}/{repo}/traffic/views";
-                const resp = await github.request(route, { owner, repo });
+                const resp = await github.request(route, {
+                  owner,
+                  repo,
+                  headers: { authorization: `Bearer ${patToken}` }
+                });
                 return resp.data?.count ?? null;
               } catch {
                 return null;
@@ -127,7 +142,7 @@ jobs:
               "Automated monthly snapshot for sponsor/partner reporting.",
               "",
               "- `GitHub App installs (manual)` is intentionally manual until a stable public API path is available.",
-              "- Traffic metrics are 14-day rolling windows from the GitHub traffic API and can show `n/a` if unavailable.",
+              "- Traffic metrics are 14-day rolling windows from the GitHub traffic API. They show `n/a` unless the `TRAFFIC_STATS_TOKEN` repo secret is set to a personal access token from an account with push access — the default Actions token can never read this endpoint (see docs/incidents/2026-07-16-monthly-metrics-traffic-na.md).",
               "",
               tableHeader
             ].join("\n");
