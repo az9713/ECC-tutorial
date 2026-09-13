@@ -54,3 +54,4 @@ jobs:
           stale-pr-message: 'This PR is stale due to inactivity.'
           days-before-stale: 30
           days-before-close: 7
+          exempt-issue-labels: 'metrics-snapshot'
