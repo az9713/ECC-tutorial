@@ -203,7 +203,7 @@ npm start
 
 ```
 ──────────────────────────────────────────────────────────────
-[Hook: pre:bash:secret-check] ❌ BLOCKED
+[Hook: pre:bash:secret-check] [FAIL] BLOCKED
 ──────────────────────────────────────────────────────────────
   Hardcoded connection string detected before command execution.
 
@@ -268,7 +268,7 @@ ECC code-reviewer — review complete
 
 ──────────────────────────────────────────────────────────────
   Findings:   1 HIGH · 2 MED · 1 LOW
-  VERDICT:    ⚠ WARNING — resolve HIGH before merge
+  VERDICT:    [WARNING] — resolve HIGH before merge
 ──────────────────────────────────────────────────────────────
 ```
 
@@ -320,7 +320,7 @@ ECC security-reviewer — scan complete
 ──────────────────────────────────────────────────────────────
   CRITICAL:   1 (hardcoded secret)
   HIGH:       1 (IP spoofing — OWASP A05)
-  VERDICT:    🚫 BLOCK — CRITICAL finding must be resolved before deploy
+  VERDICT:    [BLOCK] — CRITICAL finding must be resolved before deploy
 ──────────────────────────────────────────────────────────────
 ```
 
