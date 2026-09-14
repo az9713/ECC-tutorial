@@ -18,7 +18,7 @@ An agent handles a specific bounded task with limited tool access. Write an agen
 
 Use lowercase with hyphens. Name it by what it does, not what it is.
 
-| ❌ | ✅ |
+| [FAIL] | [PASS] |
 |---|---|
 | `kotlin-agent` | `kotlin-reviewer` |
 | `database-helper` | `database-reviewer` |
@@ -113,10 +113,10 @@ The `description` field is how Claude Code decides whether to route a task to th
 2. When to invoke it
 
 ```yaml
-# ✅ Good
+# Good [PASS]
 description: Reviews Kotlin code for correctness, Android/KMP idioms, coroutine safety, and Gradle configuration issues
 
-# ❌ Bad — too vague
+# Bad [FAIL] — too vague
 description: Helps with Kotlin development
 ```
 

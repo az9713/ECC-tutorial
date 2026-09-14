@@ -25,7 +25,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { RateLimitOptions, RateLimitStore, WindowEntry } from '../types'
 
-// ❌ BUG 1: Hardcoded connection string.
+// [FAIL] BUG 1: Hardcoded connection string.
 // Layer 3 Hook (pre:bash:dispatcher) will BLOCK `npm start` on this line.
 // Fix: move to process.env.REDIS_URL
 const REDIS_URL = "redis://localhost:6379"
@@ -39,12 +39,12 @@ export function rateLimiter(options: RateLimitOptions) {
   return function (req: Request, res: Response, next: NextFunction): void {
     const now = Date.now()
 
-    // ❌ BUG 2: Wrong TypeScript assignment — TS2322 error.
+    // [FAIL] BUG 2: Wrong TypeScript assignment — TS2322 error.
     // X-Forwarded-For header type is string | string[] | undefined.
     // Assigning directly to string is not type-safe: undefined and string[] cases unhandled.
     // Layer 3 Hook (post:edit:typecheck) fires after save and reports this.
     //
-    // ❌ BUG 4: IP key from X-Forwarded-For only — spoofable.
+    // [FAIL] BUG 4: IP key from X-Forwarded-For only — spoofable.
     // Attacker sets 'X-Forwarded-For: 1.2.3.4' and rotates to bypass limits.
     // Layer 2 Agent (security-reviewer) flags OWASP A05 misconfiguration.
     const ip: string = req.headers['x-forwarded-for']
@@ -57,7 +57,7 @@ export function rateLimiter(options: RateLimitOptions) {
       store.set(key, entry)
 
       if (entry.count > max) {
-        // ❌ BUG 3: No Retry-After header.
+        // [FAIL] BUG 3: No Retry-After header.
         // RFC 6585 requires it so clients know when to retry.
         // Layer 2 Agent (code-reviewer) flags this.
         // Fix: res.set('Retry-After', Math.ceil(windowMs / 1000).toString())

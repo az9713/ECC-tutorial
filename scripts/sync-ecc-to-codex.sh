@@ -500,18 +500,21 @@ else
 fi
 
 log "Installing global git safety hooks"
+# NOTE: helpers are invoked via `bash` explicitly instead of relying on the
+# executable bit, which is not set on these files in git and is not preserved
+# by all checkouts (this broke `sync` on Linux/macOS CI runners).
 if [[ "$MODE" == "dry-run" ]]; then
   HOME="$HOME" \
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
   ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
-    "$HOOKS_INSTALLER" --dry-run
+    bash "$HOOKS_INSTALLER" --dry-run
 else
   HOME="$HOME" \
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
   ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
-    "$HOOKS_INSTALLER"
+    bash "$HOOKS_INSTALLER"
 fi
 
 log "Running global regression sanity check"
@@ -522,7 +525,7 @@ else
   CODEX_HOME="$CODEX_HOME" \
   AGENTS_HOME="${AGENTS_HOME:-$HOME/.agents}" \
   ECC_GLOBAL_HOOKS_DIR="${ECC_GLOBAL_HOOKS_DIR:-$CODEX_HOME/git-hooks}" \
-    "$SANITY_CHECKER"
+    bash "$SANITY_CHECKER"
 fi
 
 log "Sync complete"

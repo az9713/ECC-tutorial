@@ -231,7 +231,7 @@ The design principle: put knowledge in skills, execution in agents,             
  scenario.
          Add adversarial test: forged header should not bypass the limit.
 
- VERDICT: ⚠ WARNING — fix HIGH before merge
+ VERDICT: [WARNING] — fix HIGH before merge
 
  /security-scan → security-reviewer agent:
  [CRITICAL] src/middleware/rateLimiter.ts:6 — REDIS_URL hardcoded.
@@ -243,7 +243,7 @@ The design principle: put knowledge in skills, execution in agents,             
             rotates IP indefinitely, bypassing all rate limits.
             OWASP A05: Security Misconfiguration.
 
- VERDICT: 🚫 BLOCK — CRITICAL finding must be resolved before deploy
+ VERDICT: [BLOCK] — CRITICAL finding must be resolved before deploy
 
  ---
  Layer 3: Hooks — Automatic Enforcement

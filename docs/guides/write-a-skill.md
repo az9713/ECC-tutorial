@@ -18,7 +18,7 @@ A skill is a `SKILL.md` file that encodes workflow steps, patterns, or domain ex
 
 Use lowercase kebab-case. Be specific. The name appears in skill lists and is used for routing.
 
-| ❌ Too generic | ✅ Specific |
+| [FAIL] Too generic | [PASS] Specific |
 |--------------|-----------|
 | `backend` | `django-patterns` |
 | `testing` | `golang-testing` |
@@ -83,10 +83,10 @@ Organize into sections by task type. Keep each section focused.
 The `description` field is the most important field. It controls when Claude Code activates the skill.
 
 ```yaml
-# ✅ Good: specific, includes domain terms
+# Good [PASS]: specific, includes domain terms
 description: Django ORM patterns — select_related, prefetch_related, custom managers, query optimization
 
-# ❌ Bad: too vague
+# Bad [FAIL]: too vague
 description: Database patterns and optimization tips
 ```
 
