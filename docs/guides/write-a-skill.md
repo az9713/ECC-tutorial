@@ -18,7 +18,7 @@ A skill is a `SKILL.md` file that encodes workflow steps, patterns, or domain ex
 
 Use lowercase kebab-case. Be specific. The name appears in skill lists and is used for routing.
 
-| ❌ Too generic | ✅ Specific |
+| [FAIL] Too generic | [PASS] Specific |
 |--------------|-----------|
 | `backend` | `django-patterns` |
 | `testing` | `golang-testing` |
