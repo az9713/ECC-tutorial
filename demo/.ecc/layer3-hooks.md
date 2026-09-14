@@ -67,7 +67,7 @@ src/middleware/rateLimiter.ts(50,22): error TS2322:
 
 ```
 ──────────────────────────────────────────────────────────────
-[Hook: pre:bash:secret-check] ❌ BLOCKED
+[Hook: pre:bash:secret-check] [FAIL] BLOCKED
 ──────────────────────────────────────────────────────────────
   Hardcoded connection string detected before command execution.
 
