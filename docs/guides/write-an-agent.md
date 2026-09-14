@@ -113,10 +113,10 @@ The `description` field is how Claude Code decides whether to route a task to th
 2. When to invoke it
 
 ```yaml
-# ✅ Good
+# Good [PASS]
 description: Reviews Kotlin code for correctness, Android/KMP idioms, coroutine safety, and Gradle configuration issues
 
-# ❌ Bad — too vague
+# Bad [FAIL] — too vague
 description: Helps with Kotlin development
 ```
 
