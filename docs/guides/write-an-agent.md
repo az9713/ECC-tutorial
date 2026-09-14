@@ -18,7 +18,7 @@ An agent handles a specific bounded task with limited tool access. Write an agen
 
 Use lowercase with hyphens. Name it by what it does, not what it is.
 
-| ❌ | ✅ |
+| [FAIL] | [PASS] |
 |---|---|
 | `kotlin-agent` | `kotlin-reviewer` |
 | `database-helper` | `database-reviewer` |
