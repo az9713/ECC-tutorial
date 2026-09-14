@@ -54,7 +54,7 @@ Summary
 ──────────────────────────────────────────────────────────────
   Findings:   1 HIGH · 2 MED · 1 LOW
   Coverage:   tests present but missing adversarial case
-  VERDICT:    ⚠ WARNING — resolve HIGH before merge
+  VERDICT:    [WARNING] — resolve HIGH before merge
 ──────────────────────────────────────────────────────────────
 ```
 
@@ -113,7 +113,7 @@ Summary
   CRITICAL:   1 (hardcoded secret)
   HIGH:       1 (IP spoofing — OWASP A05)
   INFO:       1
-  VERDICT:    🚫 BLOCK — CRITICAL finding must be resolved before deploy
+  VERDICT:    [BLOCK] — CRITICAL finding must be resolved before deploy
 ──────────────────────────────────────────────────────────────
 ```
 
