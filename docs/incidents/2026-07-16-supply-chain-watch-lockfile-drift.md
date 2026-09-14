@@ -1,6 +1,6 @@
 # Why "Supply-Chain Watch" kept failing — a full explanation
 
-**Repo:** az9713/ECC-tutorial · **Investigated:** 2026-07-16 · **Status:** ✅ Fixed and verified
+**Repo:** az9713/ECC-tutorial · **Investigated:** 2026-07-16 · **Status:** [PASS] Fixed and verified
 
 This document assumes no prior git/GitHub knowledge. Every git/GitHub concept is explained
 where it first matters, not just listed in a glossary — so you understand *why* each piece
