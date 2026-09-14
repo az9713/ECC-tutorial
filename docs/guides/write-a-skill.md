@@ -83,10 +83,10 @@ Organize into sections by task type. Keep each section focused.
 The `description` field is the most important field. It controls when Claude Code activates the skill.
 
 ```yaml
-# ✅ Good: specific, includes domain terms
+# Good [PASS]: specific, includes domain terms
 description: Django ORM patterns — select_related, prefetch_related, custom managers, query optimization
 
-# ❌ Bad: too vague
+# Bad [FAIL]: too vague
 description: Database patterns and optimization tips
 ```
 
