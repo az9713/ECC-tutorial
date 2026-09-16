@@ -86,7 +86,7 @@ jobs:
               }
             }
 
-           async function getTraffic(metric) {
+            async function getTraffic(metric) {
   // NOTE: the actions/github-script pre-authenticated octokit client overwrites any
   // custom Authorization header with GITHUB_TOKEN, so the PAT must be sent via plain
   // fetch() instead of github.request().
