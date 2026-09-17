@@ -87,22 +87,28 @@ jobs:
             }
 
             async function getTraffic(metric) {
+              // NOTE: the actions/github-script pre-authenticated octokit client overwrites any
+              // custom Authorization header with GITHUB_TOKEN, so the PAT must be sent via plain
+              // fetch() instead of github.request().
               const patToken = process.env.TRAFFIC_STATS_TOKEN;
               if (!patToken) return null;
               try {
-                const route = metric === "clones"
-                  ? "GET /repos/{owner}/{repo}/traffic/clones"
-                  : "GET /repos/{owner}/{repo}/traffic/views";
-                const resp = await github.request(route, {
-                  owner,
-                  repo,
-                  headers: { authorization: `Bearer ${patToken}` }
+                const endpoint = metric === "clones"
+                  ? `https://api.github.com/repos/${owner}/${repo}/traffic/clones`
+                  : `https://api.github.com/repos/${owner}/${repo}/traffic/views`;
+                const res = await fetch(endpoint, {
+                  headers: {
+                    authorization: `Bearer ${patToken}`,
+                    accept: "application/vnd.github+json",
+                    "X-GitHub-Api-Version": "2022-11-28"
+                  }
                 });
-                return resp.data?.count ?? null;
-              } catch {
-                return null;
-              }
-            }
+                if (!res.ok) return null;
+                const data = await res.json();
+                return data?.count ?? null;
+              } catch { return null; }
+            },
+
 
             const [
               mainWeek,
