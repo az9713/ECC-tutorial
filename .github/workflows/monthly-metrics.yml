@@ -107,7 +107,7 @@ jobs:
                 const data = await res.json();
                 return data?.count ?? null;
               } catch { return null; }
-            },
+            }
 
 
             const [
